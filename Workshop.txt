@@ -1,0 +1,12 @@
+https://us-east-2.console.aws.amazon.com/codesuite/codecommit/repositories/MLP173/browse?region=us-east-2#
+
+
+https://us-east-2.console.aws.amazon.com/codesuite/codecommit/repositories/MLP174/browse?region=us-east-2#
+
+https://us-east-2.console.aws.amazon.com/codesuite/codecommit/repositories/MLP175/browse?region=us-east-2#
+
+https://us-east-2.console.aws.amazon.com/codesuite/codecommit/repositories/MLP176/browse?region=us-east-2#
+
+https://us-east-2.console.aws.amazon.com/codesuite/codecommit/repositories/MLP177/browse?region=us-east-2#
+
+https://us-east-2.console.aws.amazon.com/codesuite/codecommit/repositories/MLP178/browse?region=us-east-2#
