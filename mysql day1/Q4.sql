@@ -1,0 +1,20 @@
+select Ename from Emp 
+Order By Ename;
+
+select * FROM EMP
+WHERE ENAME LIKE 'J___S';
+
+SELECT * FROM EMP 
+WHERE JOB IN('CLERK','SALESMAN');
+
+SELECT * FROM EMP 
+WHERE JOB NOT IN('CLERK','SALESMAN');
+
+
+SELECT Empno,Ename,Job,Sal,Mgr
+FROM EMP 
+ORDER BY Job,Ename DESC;
+
+SELECT DISTINCT JOB From Emp;
+
+
