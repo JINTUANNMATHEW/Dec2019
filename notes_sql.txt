@@ -1,0 +1,374 @@
+PROJECT(Ecode,EmpName,Deptcode,DEPTHEAD,PROJCODE,HOURS)
+
+First Normal Form : A table said to be in first normal form, when each cell contains precisely one value. {Atomic Values}
+
+Assume data as 
+
+Project(
+E001,'Scott','D001','Adam',{P001,523},
+{P002,444},{P003,513},
+E002,'Mike','D002','Arthur',{P003,523},
+{P001,623} 
+E003,'Blake','D003','Adam',{P001,523},
+{P003,513}
+
+By Applying 1NF 
+
+
+E001,'Scott','D001','Adam',P001,523
+E001,'Scott','D001','Adam',P002,444
+E002,'Mike','D002','Arthur',P003,523
+E002,'Mike','D002','Arthur',P001,623
+E003,'Blake','D003','Adam',P001,523
+E003,'Blake','D003','Adam',P003,513
+
+PROJECT(Ecode,EmpName,Deptcode,DEPTHEAD,PROJCODE,HOURS)
+
+This situation could lead to the following problems : 
+
+1) Insertion : The department of the particular employee cannot be recorded until the employee is assigned a project. 
+
+2) Updation : The Employee Code, Department Code, and department head are repeated several times, if an employee is transferred to another dept. this change will have to be recorded in every row of the EMPLOYEE table pertaining to that employee. 
+
+3) Deletion : When an employee completes work on the project, the employee's record to be deleted. The info. regarding the department to which the emplyee belongs will also to be lost. 
+
+So, 1NF inadequate in this scenario, so we have to go for 2NF. 
+
+Second Normal Form : A table is said to be in 2NF, when it is in 1NF and every attribute in the row is functionally dependent upon the whole key, and not just part of the key. 
+
+
+Guidelines : 
+
+-> Find and remove attributes that are functinally dependent on only a part of the key and not on the whole key. 
+-> Group the remaining attributes. 
+
+
+PROJECT(Ecode,EmpName,Deptcode,DEPTHEAD,PROJCODE,HOURS)
+
+By Applying 2NF
+
+Employ(Ecode+,EmpName,DeptCode,DepHead)
+Project(Ecode-,ProjCode,Hours) {Ecode+ProjCode}
+
+The problems with dependencies of this kind are : 
+
+1) Insertion : The DEPTHEAD of a new dept that does not have any employees at the present cannot be entered in the DEPTHEAD column. 
+
+2) Updation : the DEPTHEAD is repeated several times, hence if a dept head moves to another dept, the change will have to be made consistently across the table. 
+
+3) Deletion : If the record of the employee is deleted, then the information regarding the head of the dept will also to be deleted. Hence there will be a loss of information. 
+
+2NF inadequate, because of transitive dependency.
+
+
+Third Normal Form : A table is said to be in the 3NF, when it is in the 2NF and each attribute transitively depend on whole key but not as part of key. 
+
+By applying 3NF, 
+
+PROJECT(Ecode,EmpName,Deptcode,DEPTHEAD,PROJCODE,HOURS)
+
+Employ(Ecode+,EmpName,DeptCode,DepHead)
+
+
+PROJECT(Ecode,EmpName,Deptcode,DEPTHEAD,PROJCODE,HOURS)
+
+
+Dept(DeptCode+,DeptHead)
+Employ(Ecode+,DeptCode-,EmpName)
+Project(Ecode-,ProjCode,Hours) {Ecode+ProjCode}
+
+
+AgentPolicy(AgentId,AgentName,City,State,Gender,DOB,
+PolicyID,PolicyDate,PremiumAmount,Installment,PaymentMode)
+
+Guidelines : One agent will do multiple policies, one policy can be made by multiple agents. 
+
+EmployDetails(EmployNo,EmpName,Gender,DomainId,DomainName,
+ManagerId,ManagerName,ProJCode,ProjName,ClientName,ClientId,ProjectDuration,ClientStatus)
+
+
+Aggregate Functions : 
+_______________________
+
+
+1) sum() : Performs sum. operation on the given numeric field. 
+
+2) Avg() : Performs avg. operation on the given field
+
+Joins : Used to extract data from more than one table, there are different types of joins known as 
+
+   1) inner join : Acts as INTERSECT Operator, used to extract only common records from the given table. 
+
+   2) outer join : Returns both matching/unmatching records, there are 3 outer joins as 
+
+	1) Left Outer : All records from the left side table and matching records from right-side table. 
+
+	2) Right Outer : All records from right-side table and matching records from left-side table. 
+
+	3) Full outer : All matching/unmatching records from left/right tables. 
+
+   3) cross join
+
+   4) self join
+______________________________________________
+
+1) Display all records from Agent Table
+
+2) Display AgentId,FirstName,LastName,City,SSN
+from  Agent 
+
+3) Display all records whose gender is 'female'
+
+4) Display all records whose country is INDIA
+
+5) Display all records whose STATE is AP,NY or MI
+
+6) Write a Query as display 
+AgentID,FirstName,LastName,MaritalStatus and
+if maritalstatus is 1 then 'married' if 0 then 'unmarried'
+
+7) Display all records of policy table
+
+8) Display max, min, avg, sum of annualpremium
+from policy table
+
+9) Display PaymentData as if paymentMode is 1 then 'Yearly' 2 'halfyealy' 3 'quarterly'
+
+10) Display PaymentMode,Sum(annualpremium) group by paymentMode
+
+11) Display annualpremium sum and avg based on AppDate year 
+
+ Display AgentId,FirstName,LastName,City,
+IsSplitAgent,
+State,PolicyId,AnnualPremium,ModalPremium 
+from Agent, Policy and AgentPolicy Tables 
+
+Cross Join : Generates the cartician product of records of given tables. As table A contains n records, and table B contains m records, then it generates (n*m) records. 
+
+select * from Dept Cross Join Emp;
+
+Select * from Agent Cross Join AgentPoicy;
+
+Select * from Policy Cross Join AgentPolicy;
+
+Subqueries : 
+_____________
+
+Sometimes, its difficult to extract data by using single SQL command, for this we need the help of subqueries. A subquery is a query, that which is having another query inside, the query which is inside known as inner query, the query which is outside known outer query, everytime the result of the inner query will be send as input to the outer query. 
+
+--> Display max. sal
+
+--> Display Employ Name who is getting max sal
+
+select ename from Emp where sal=max(sal)
+
+select Ename from Emp WHERE SAL=
+(Select Max(sal) from Emp);
+
+select max(sal) from Emp where sal <
+(select max(sal) from Emp)
+
+
+--> Display 2nd min. salary
+--> Display name of person who is getting 2nd min. salary
+
+--> Display 2nd min annualpremium from policy table
+
+--> Display which year they got highest annualpremium
+
+--> Display which year they got second highest annualpremium
+
+Subquery returns more than one row, 
+
+example : 
+If i want to display idle departments as which is there in Dept table but not there in Emp table 
+
+select * from Dept 
+WHERE Deptno <> (select deptno from Emp)
+
+if subquery returns  more than one value, we can handle them by using either
+
+ALL or ANY Operator. 
+
+Example : 
+
+Empno <> ALL(10,20,30) means 
+
+Empno <> 10 AND Empno <> 20 AND Empno <> 30
+
+Empno <> ANY(10,20,30) means 
+
+Empno <> 10 OR Empno <> 20 OR Empno <> 30
+
+
+select * from Dept 
+WHERE Deptno <>ALL(select deptno from Emp)
+
+-- Display Idle agents 
+
+SELECT * FROM AGENT 
+WHERE AGENTID <> ALL(Select AgentID From AgentPolicy)
+
+-- Display Idle Policies 
+
+SELECT * FROM POLICY
+WHERE PolicyID <> ALL(SELECT PolicyID From
+AgentPolicy)
+
+Policy     AgentPolicy
+______     ___________ 
+1		2
+2		4
+3		7
+4
+5
+6
+7
+
+1<>2 && 1<>4 1<> 7  print 1
+2<>2 wrong  dont print 
+3<>2 && 3<>4 && 3<> 7 print 3
+....
+
+select AgentID,FirstName,LastName from Agent
+WHERE AgentID=ANY(select distinct AgentID
+from AgentPolicy)
+
+AgentID     AgentPolicy
+________    __________
+1		1
+2		2
+3		4
+4		7 
+5
+6
+7
+AgentID<> ANY(1,2,4,7)
+
+1<>1 wrong OR 1<>2 Yes -> 1
+2<>1 yes => 2 
+3<>1 3<>2 3<>4 3<> 7 -> Dont print 
+
+
+
+
+--> Display Agent FirstName, LastName who 
+did policies 
+--> Display agent FirstName, LastName and 
+No.of Policies they did. 
+
+--> Display agent FirstName, LastName and 
+No.of Policies they did for matching and unmatching, if no policies did then print value 0. 
+
+--> Display Idle Policies (Which is there in policy table, but not
+there in agentPolicy)
+
+--> Display PolicyID, AppNumber, and No.of Policies made. 
+
+--> Display All matching and Unmatching policyID,Appnumber if no 
+policies made then print 0 
+
+
+
+There are different types of commands as 
+
+1) DDL (create, Alter, Drop, Truncate) 
+
+2) DML (Insert, Update, Delete) 
+
+3) DQL
+
+4) DCL -- 
+
+
+______________________________________________________________
+
+Data Integrity : It is imp. to ensure that the data stored in tables is complete and consistent.  The concept of maintaining consistency and completeness of data is called data integrity.  It is enforced to ensure that the data in the database is accurate, consistent and reliable.  
+
+1) Entity Integrity : Ensures that each row can be uniquely identified by an attribute called the primary key. The primary key column contains unique value in all the rows. This column cannot be NULL. 
+
+2) Domain Integrity : Ensures that only a valid range of values is stored in a column. It can be enforced by restricting the type of data.  For suppose the dept field need to contain the list of values as 'computers' or 'physics' or 'maths' then it is coming under the part of domain integrity. 
+
+3) Referential Integrity : Ensures that the values of the foreign key match the values of the corresponding primary key. 
+
+
+Employ(Empno,Name,Gender,Dept,Desig,Salary)
+
+  Empno -> Number Primary Key
+  Name -> varchar(30) not null
+  Dept -> varchar(30) not null
+  Desig -> varchar(30) not null
+  Salary -> number 
+
+
+Payment(PaymentId,PaymentMode,PaymentAmount,PaymentDate)
+
+PaymentId -> Primary Key auto increment,
+PaymentMode -> NetBanking,DebitCard,CreditCard,PayTm
+PaymentAmount -> Number
+PaymentDate -> Date 
+
+
+_________________________________________________________________
+
+
+
+Dept(DeptCode+,DeptHead)
+Emp(Ecode+,DeptCode-,EmpName)
+Project(Ecode-,ProjCode,Hours) {Ecode+ProjCode}
+
+
+--> Display All depts who dont have employees 
+--> Display Matching records from Dept and Employ Tables
+--> Display Matching and Unmatching records from Employ and Dept tables, if NULL then replace with NOT FOUND
+--> Display All Employees along with their project codes
+--> Display all employees who are not working in any project. 
+--> Display all project details along with no.of employees are working
+--> Display employee details and no.of projects they are working on
+
+
+Correlated Subquery
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   
