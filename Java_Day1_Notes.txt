@@ -1,0 +1,292 @@
+Java 
+_____
+
+Object Oriented Programming : 
+
+It is an approach that provides a way of modularizing programming, that which can be used to create small partition memory area for both data and objects, which are to be used as templates for creating copies of such modules on demand. 
+
+
+Object :  An object is a real world entity, that which possess 3 characterstics known as 
+
+	1) State
+	2) Behaviour
+	3) Identity 
+
+OOPs Features : 
+________________
+
+1) Encapsulation : Wrapping up of data and functions into a single unit known as encapsulation. 
+
+2) Abstraction : Hiding the irrelevant details of an object, that do not contribute to its essential characterstics known as abstraction. 
+
+*** Encapsulation focuses on showing the relevant detais, where abstraction focuses on hiding the irrelvant details ***
+
+3) Inheritance : Deriving a new entity from already existing entity known as inheritance, through inheritance we can reduce the size of the program.
+
+4) Polymorphism : The ability to take more than one form known as polymorphism. 
+
+class : A class is a template or blueprint, that which contains combination of data members and member functions. Members of the class can be accessable by using the instance of the class. 
+
+class class_name
+{
+    data members;
+    member functions;
+}
+
+Why Java :
+___________
+
+1) Platform Independence 
+
+2) Console Applications
+
+3) Windows Applications
+
+4) Web Applications
+
+5) Mobile/Service Oriented Apps
+
+6) Packages : Contains group of related classes and interfaces that which belongs to one common group, if you want to overcome the naming conflicts between classes then we need the help of packages. 
+
+Java Features : 
+_______________
+
+	1) Simple : java uses simple C/C++ syntaxes, as a programmer no need to take care of internal details like memory management etc. as how much memory allocated to run the program, the same amount of memory will be reallocated automatically. 
+
+	2) Object Oriented : Java supports all object oriented programming features. 
+
+	3) Compiled and Interpreted : Java programs are compiled first, during compilation java code will be converted into bytecode, then .class file will be created. In interpretation it reads the bytecode line by line and executes. 
+
+	4) Portable : Ability to run the program without changing the source code, java programs are programs that can run on any env, without changing the source code. 
+
+	5) Securable : Java implements different levels of security as 
+
+	   (i) Compiler Level 
+	  (ii) Byte-Code Level 
+	 (iii) Class-Loader Level 
+
+	6) Distributed : By using java, we can create all distributed applications. 
+
+Java Architecture :
+____________________
+
+	1) Java Program : Java code that which 		stored with extension .java
+
+	2) Java Class : Java code after 		compilation its converted into 		bytecode, then .class file will 		be created. 
+
+	3) JVM (Java Virtual Machine) 
+
+		(i) Class Loader : Used to load all classes that which are required to run the program. There are 2 types of class loaders known as
+		(a) Primordial Class Loader : Used to load all system classes that which are required to run the program. 
+
+		(b) Class Loader Objects : Used to load all custom classes that which are required to run the program. 
+
+	       (ii) JIT Compiler : Converts the bytecode into CPU understandable format. 
+
+	      (iii) Execution Manager : Contains QUEUE of programs, which are ready to run where we can execute the program. before execution it needs to undergone the security authentication. 
+
+	4) Java API : Which provides runtime env, that which allows you to run the java program. Here we have JDK and JRE 
+
+Access Modifiers : 
+___________________
+1) private : Allows you to access members within the current class, outside class you cannot access them w.r.t. 
+
+2) public : Allows you to access members in entire application. 
+
+3) protected : Allows you to access members within current/derived classes. 
+
+4) friendly : Allows you to access members in all classes of current package. 
+
+Data Types : 
+_____________
+
+There are 2 types of data types as 
+
+	(1) Value Types 
+		int, float, double, char, boolean,byte etc...
+
+	(2) Reference Type : String, Object and custsom class. 
+
+
+System.out.println() : Used to display any value or message. 
+
+System -> class 
+out -> console
+println() -> Method 
+
+System.out.println("Welcome to Java Programming...");
+
+You can define method main() as 
+
+public static void main(String[] args) {
+...
+...
+...
+}
+
+main() method must be static, because no class object supposed to call the method main(). 
+
+
+You can create an object to the class, as
+
+class_name obj=new class_name();
+
+javac -cp . com/hexaware/trainer/ArgsDemo.java
+java -cp . com/hexaware/trainer/ArgsDemo leela sankari
+
+1) Program to Convert centigrate to fahrenheit
+
+The default package for java is java.lang
+
+The top level class for java is java.lang.Object 
+
+Control Structures : Used to define the flow of the program. There are 2 types of control structures known as 
+
+1) Branching  
+
+	if...else : Executes the statements based on the condition. 
+
+	  if(condition) {
+		statement(s);
+	  } else {
+		statement(s);
+	  }
+
+	switch...case 
+
+2) Looping 
+
+ while loop : 
+	Executes the statements repeatedly until the condition remains true, if the condition remains false, then it comes out of the loop. 
+
+For every loop, basically there are 3 phases as
+
+	1) Initialization 
+
+	2) Condition
+
+	3) Increment/Decrement 
+
+Initialization performed at the beginnig of the loop.
+Condition performed at the conditional part of loop. 
+Increment/Decrement performed before closing loop.
+
+Arrays : An array is the finite ordered set of homogeneous elements, means all the elements belongs to same data type. 
+
+All the elements of array are stored in successive memory location. 
+
+int[] a=new int[]{12,6,34,67};
+
+a[0]=12;
+a[1]=6;
+a[2]=34;
+a[3]=67;
+
+ public void show() {
+        int[] a=new int[]{12,4,77,34};
+        // for(int i=0;i<a.length;i++) {
+        //     System.out.println(a[i]);
+        // }
+        for(int i : a) {
+            System.out.println(i);
+        }
+    }
+
+In the above code, i value first points to the first element in Array a, after processing the first element, it checks whether  the next element is there or not by using hasNext(), if hasNext() returns true, it moves to the next element by using next(), it repeats as soon as hasNext() return false. 
+
+
+1) Program to display a number in roman number.
+
+2) Display a number in English as 
+
+enter 543 means five hundred and forty three
+ 
+    1234 means One thousand two hundred and thirty four
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
