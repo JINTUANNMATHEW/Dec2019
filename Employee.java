@@ -29,7 +29,7 @@ public class Employee {
 
   @Override
   public boolean equals(Object ob) {
-      Employ employ = (Employ)ob;
+      Employee employ = (Employee)ob;
       if(this.basic == employ.basic) {
           return true;
       } else {
