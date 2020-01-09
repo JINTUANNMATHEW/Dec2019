@@ -4,3 +4,6 @@ day 2 full stack training
 hi
 bye
 hello
+bye
+bye
+bye
