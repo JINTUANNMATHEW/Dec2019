@@ -3,3 +3,6 @@ git class going on
 hi 
 bye
 hello
+added
+added
+added
