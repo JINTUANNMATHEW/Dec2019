@@ -26,6 +26,5 @@ public class EmployMapper implements ResultSetMapper<Employ> {
         rs.getString("name"), rs.getString("dept"), 
         rs.getString("desig"), rs.getInt("basic")
         );
-  //  return new Orders(rs.getInt("cus"), rs.getDouble("wal_amount"),ws);
   }
 }
