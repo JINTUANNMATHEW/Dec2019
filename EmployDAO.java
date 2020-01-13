@@ -16,6 +16,14 @@ public interface EmployDAO {
      /**
      * @return the all the Employ record.
      */
+    @SqlUpdate("Insert INTO EMPLOY(Empno, Name,Dept,"
+    + " Desig, Basic) VALUES(:empno,:name,:dept,"
+    + ":desig,:basic)")
+    int addEmploy(@BindBean Employ employ);
+
+     /**
+     * @return the all the Employ record.
+     */
     @SqlQuery("SELECT E.Empno, E.Name, E.Dept,"
     + " E.Desig, E.Basic FROM EMPLOY E;")
     @Mapper(EmployMapper.class)

@@ -28,4 +28,13 @@ public class EmployFactory {
     List<Employ> employees = dao().show();
     return employees;
   }
+
+  /**
+   * AddEmploy .
+   * @return the array of Employ object.
+   */
+    public static String addEmploy(Employ employ) {
+    dao().addEmploy(employ);
+    return "Record Added...";
+  }
 }
