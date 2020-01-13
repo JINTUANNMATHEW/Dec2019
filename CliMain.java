@@ -28,5 +28,6 @@ import java.util.Scanner;
      System.out.println("Enter Salary  ");
      employ.setBasic(option.nextInt());
      System.out.println(EmployFactory.addEmploy(employ));
+     Runtime.getRuntime().halt(0);
  }
  }
