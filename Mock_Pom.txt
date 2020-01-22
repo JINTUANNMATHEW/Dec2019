@@ -4,3 +4,26 @@
       <version>1.33</version>
       <scope>test</scope>
     </dependency>
+
+_____________________________________
+
+package com.hexaware.trainer;
+import com.hexaware.factory.EmployFactory;
+import com.hexaware.model.Employ;
+import com.hexaware.persistence.EmployDAO;
+import mockit.MockUp;
+import org.junit.runner.RunWith;
+import mockit.Expectations;
+import mockit.Mock;
+import mockit.Mocked;
+import java.util.ArrayList;
+import mockit.integration.junit4.JMockit;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertEquals;
+
+import org.junit.Test;
+
+public class EmpTest {
+
+}
