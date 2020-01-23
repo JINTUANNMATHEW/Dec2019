@@ -1,0 +1,55 @@
+Menu.java
+__________
+
+
+Properties are used to define the internal behaviour of the particular entity. if you want to represent any variable a field, then we need the help of properties. we have getter() and setter() 
+
+getter() for reading the value
+setter() for assign the value. 
+
+toString() : 
+
+java.lang.Object class have predefined methods as
+
+equals()
+hashCode()
+toString() 
+
+which we can override. 
+
+toString() contains the list of values to be printed when we print the object. 
+
+This method will be called automatically once we print the object. 
+
+Ex :
+
+Customer obj = new Customer();
+
+System.out.println(obj);
+
+then it calls toString() method of Customer class
+
+hashCode() : It returns memory location address number, you can override this method as all values of the particular class object are same, then we can return same hashCode() number. 
+
+This can be achieved by using Objects.hash()
+
+equals() : Checks the values of the paritcular class object and returns true or false. 
+
+How to print the class name from object : 
+
+getClass() 
+
+A constructor is a special member, that which allows you to initialize the member variables of the class, it is special because it has the same name as that of class name. 
+
+Rules : 
+________
+
+   1) It will not return any value. 
+   2) It will not contains any return type. 
+   3) It will be invoked automatically once 
+	instance of the class created. 
+   4) A constructor can be overloaded. 
+
+
+
+
