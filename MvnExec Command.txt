@@ -1,0 +1,5 @@
+mvn exec:java -Dexec.mainClass=com.hexaware.util.CliMain
+
+javac -cp . com/hexaware/trainer/Custom.java
+
+java -cp . com/hexaware/trainer/ArrEx
