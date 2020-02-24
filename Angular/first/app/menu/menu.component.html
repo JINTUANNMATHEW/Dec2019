@@ -1,0 +1,22 @@
+<!-- <app-first></app-first>
+<hr/>
+<app-second></app-second>
+<hr/>
+<app-calc></app-calc> -->
+
+Second Router. 
+
+<br>
+<a [routerLink] = "['/first']">First</a> &nbsp;&nbsp;&nbsp;&nbsp;
+<!-- <button type="button"
+   [routerLink]="['/first',{outlets:{data:':/first'}}]">First</button> -->
+<!-- <a [routerLink]='[{ outlets: { secondRouter: ["/first"] } }]'>First</a>
+<a [routerLink]='[{ outlets: { secondRouter: ["/second"] } }]'>Second</a> -->
+<!-- <a [routerLink]="[{ outlets: { data:':'menu/first' } }]">First</a> &nbsp;&nbsp;&nbsp;&nbsp; -->
+<!-- <a [routerLink] = "['/first']">First</a> &nbsp;&nbsp;&nbsp;&nbsp; -->
+<a [routerLink] = "['/second']">Second</a> &nbsp;&nbsp;&nbsp;&nbsp;
+<a [routerLink] = "['/calc']">Calc</a> &nbsp;&nbsp;&nbsp;&nbsp;
+<a [routerLink] = "['/employ']">Employ</a> &nbsp;&nbsp;&nbsp;&nbsp;
+<a [routerLink] = "['/employlist']">Employ List</a> &nbsp;&nbsp;&nbsp;&nbsp;
+<hr/><br/><br/> 
+<router-outlet name='data'></router-outlet>
