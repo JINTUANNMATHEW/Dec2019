@@ -1,0 +1,102 @@
+import { Component, OnInit } from '@angular/core';
+import {Observable} from 'rxjs/Rx';
+import {EmployeeService} from '../employee.service';
+import {Employee} from '../Employee';
+import {LeaveDetails} from '../leave-details' ;
+import { Router } from '@angular/router';
+
+@Component({
+  selector: 'app-pending',
+  templateUrl: './pending.component.html',
+  styleUrls: ['./pending.component.css']
+})
+export class PendingComponent implements OnInit {
+
+  employee : Observable<Employee[]>;
+  Pending : Observable<Employee[]>;
+  empId : number;
+  flagp : number;
+  //leavedetails:LeaveDetails;
+  model=new LeaveDetails();
+  constructor(private em : EmployeeService, private rt : Router) {
+
+      this.empId=parseInt(localStorage.getItem("empId"));
+      this.Pending=em.getPendingList(this.empId);          
+      this.employee = em.getEmployee();
+      this.flagp = parseInt(localStorage.getItem("empId"));
+    }
+    setClickRowDup(id,e) {
+      localStorage.setItem("leaveId",id);
+      alert(id);
+      //this.leavedetails=new LeaveDetails();
+      this.model.leaveId=parseInt(localStorage.getItem("leaveId"));
+      //alert( this.model.leaveId);
+      localStorage.setItem("lEmpId",e);
+      alert(e);
+    }
+
+    updateStatus() {
+      this.rt.navigate(['/updateStatus']);
+    }
+  ngOnInit() {
+  }
+
+}
+
+____________________________________________________
+
+<h2><i><u>Pending Details</u></i></h2>
+<table border="3">
+  <tr></tr>
+  <tr *ngFor="let e of employee | async">
+    <div *ngIf="e.managerId==flagp">
+      <th>Employee Id</th> <td>{{e.empId}}</td>
+      <th>Employee Name</th> <td>{{e.employeeName}}</td>
+      <th>Leave Balance</th> <td>{{e.availableLeaveBalance}}</td>
+      <br/><br/>
+
+      <tr border="3">
+      <th width="70">Leave ID</th>
+      <th>Employee ID</th>
+      <th>Start Date</th>
+      <th>End Date</th>
+      <th>Number Of Leaves</th>
+      <th>Leave Reason</th>
+      <th>Applied On</th>
+      <th>Approved On</th>
+      <th>Leave Type</th>
+      <th>Leave Status</th>
+    </tr>
+    </div>
+
+    <table border="3">
+    <tr *ngFor="let ld of Pending | async" (click)="setClickRowDup(ld.leaveId, e.empId)" class=highlight onclick="this.value">
+      <div *ngIf="e.empId == ld.employeeId" rowspan=200 px>
+      <td width="70">{{ld.leaveId}}</td>
+      <td width="90">{{ld.employeeId}}</td>
+      <td width="80">{{ld.startDate}}</td>
+      <td width="70">{{ld.endDate}}</td>
+      <td width="80">{{ld.noOfLeaves}}</td>
+      <td width="80">{{ld.leaveReason}}</td>
+      <td width="80">{{ld.appliedOn}}</td>
+      <td width="80">{{ld.approvedOn}}</td>
+      <td width="80">{{ld.leaveType}}</td>
+      <td width="80">{{ld.leaveStatus}}</td>
+      <td width="80">{{ld.managerComments}}</td>
+      </div>
+    </tr>
+    </table>
+    </tr>
+    </table>
+    <br/> <br/>
+    <input type="button" value="Approve/Deny" (click)="updateStatus()"/>
+
+______________________________________________________________________________________
+
+this.isValidFormSubmitted = true;
+    setTimeout(() => {
+      
+        this._route.navigate(['/dashboard'])
+      }
+      , 500);
+  }
