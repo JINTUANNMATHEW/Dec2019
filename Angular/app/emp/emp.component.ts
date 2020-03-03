@@ -18,3 +18,6 @@ export class EmpComponent implements OnInit {
   }
 
 }
+
+
+https://jsonplaceholder.typicode.com/users
