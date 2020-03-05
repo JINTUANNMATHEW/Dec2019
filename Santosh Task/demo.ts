@@ -11,6 +11,7 @@
     root = this;
   }
 
+50576
   var toString = Object.prototype.toString;
   /**
    * @name _
