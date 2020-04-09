@@ -1,0 +1,308 @@
+﻿Today we discuss about 
+
+1) Collections
+
+2) Jdbi
+
+3) Jdbi CRUD Operations
+
+4) Task
+
+Tomorrow on same exercise we will do JMOCKIT
+
+That you have to apply on your project. 
+
+What is Collections
+
+Why Collections 
+
+What are the top interfaces of Collections 
+
+The drawback with arrays, its static container of data,
+as once assigned we cannot change the size. 
+
+But, i want to store data irresepective of size, w.r.t. 
+large amount of data we have to store, then we need the help of
+collections. 
+
+mvn archetype:generate -DgroupId=com.hexaware.trainer -DartifactId=CollectionsDemo -DarchetypeArtifactId=maven-archetype-quickstart -DarchetypeVersion=1.4 -DinteractiveMode=false
+
+mvn exec:java -D exec.mainClass=com.hexaware.trainer.ArrayList1
+
+What is the difference between collections and generics 
+
+Generics provides an opportunity to define type at runtime. 
+
+If you want to make any method as write once and apply for 
+all types, then we need the help of generics. 
+
+Advantages : 
+____________
+
+
+	1) Code reusability
+
+	2) Provides security as we can restrict the data. 
+
+	3) Reduces the size of the program. 
+
+	4) No Typecasting required. 
+
+
+
+Generics will be represented <T> 
+
+In place of T, we can pass any type at runtime. 
+
+
+Set interface allows you to eliminate the duplicates from the given List. 
+
+In this, we have HashSet() and LinkedHashSet() 
+
+
+SortedSet : Used to display data w.r.t. Sorting Order. 
+
+TreeSet is falling under SortedSet. 
+
+
+Database we are doing CRUD operations. 
+
+   Create, Read, Update and Delete 
+
+
+JDBI 
+
+It i an API that which contains methods and interfaces that which 
+allows you to interact with the database. 
+
+Here, we are using MySql Db to connect. 
+
+Java commands not understable to Database, and database commands are not understable to java, 
+
+
+we need an API that which convers the Java commands into MySql 
+understable format. 
+
+There are various steps are involved in connecting to the database. 
+
+JDBC (Java DataBase Connectivity)  Java applications cannot directly communicate with a database to submit data and retrieve the results of queries. You need a mechanism to translate java statements into SQL statements. The JDBC architecture provides the mechanism for this kind of transaction. 
+
+JDBC Architecture is classified into 2 types. 
+
+JDBC Application Layer : Signifies a java application that uses the JDBC API to interact with the JDBC drivers. A JDBC driver is a software that a java application uses to access a database. 
+
+JDBC Driver Layer : Acts as an interface between a java applicatinos and a database. This layer contains a driver, such as a SQL Server driver or Oracle driver, which enables you to connect to the database. A driver sends the request of a java application to the database. After processing the request, the database sends the response back to the driver. The Driver translates and sends the response to the JDBC API. 
+
+Types of JDBC Drivers : 
+
+1) JDBC-ODBC Bridge Driver {Type 1}
+
+2) Native-API Partly-Java driver {Type 2}
+
+3) JDBC-Net Pure-Java driver {Type 3}
+
+4) Native Protocol Pure-java Driver. {Type 4}
+
+1. JDBC-ODBC Bridge Driver : It is called type 1 driver, that converts the JDBC calls to Open Database Connectivity (ODBC). ODBC is an open standard API to communicate with the databases.  The JDBC-ODBC bridge driver enables a java app. to use any database that supports ODBC driver. Java application will not interact with the ODBC driver, for this purpose, we need to use JDBC-ODBC bridge driver that works as an interface between the app and the ODBC driver. 
+
+2. Native-API Partly-Java Driver : It is called type 2 driver. It uses the local native libraries provided by the database vendors to access databases. The JDBC driver maps the JDBC calls to the native method calls, which are passed to the local native Call Level Interface(CLI). To use this driver the CLI needs to be loaded on the client computer. As opposed to the JDBC-ODBC bridge driver, the Native-API partly-java driver does not have an ODBC intermediate layer. 
+
+3. JDBC-Net Pure-Java Driver : This is called Type 3 driver. You can use the JDBC-Net Pure-Java Driver over the web while connecting applets with databases. This driver consists of client and server portions. Client Portion contains the pure java functions and the server side portion contains java and native methods. The java app. sends the JDBC calls to the JDBC-Net Pure java driver client portion, which in turn, translates JDBC calls into database calls. 
+
+4. Native Protocol Pure-java driver : This is called type 4 driver, it is a java driver that interacts with the database directly using a vendor-specific network protocol, As opposed to the other JDBC drivers, you do not require to install any vendor-specific libraries to use the Type 4 driver. 
+
+
+_______________________________________________________________________________
+
+You need to load the database drivers and the JDBC API while developing a java application to retrieve or store data in a database. All JDBC classes and interfaces are available in java.sql package. The classes and interfaces performs the no.of tasks such as establish and close the connectino with a database, send a request to the database etcc..
+
+DriverManager class : Loads the Driver for a database. 
+
+
+To query a database and display the result using java application, you need to : 
+
+1) Load a Driver
+
+2) Connect to database
+
+3) Create and execute JDBC statements
+
+4) handle SQL Exceptions. 
+
+Loading Driver : 
+
+You can load the driver by using forName() method. 
+
+
+Class.forName("sun.jdbc.odbc.JdbcOdbcDriver"); // Type 1 driver
+
+Class.forName("net.sourceforge.jtds.jdbc.Driver"); // Type 4 driver
+
+Class.forName("oracle.jdbc.driver.OracleDriver");
+			
+			Connection con=DriverManager.getConnection(
+					"jdbc:oracle:thin:@localhost:1521:xe","scott","tiger");
+
+Connection to Database : 
+
+By using the Connection interface you can connect to the database. 
+
+Connection con=DriverManager.getConnection("jdbc:odbc:datasource");
+
+Connection connection=DriverManager.getConnection("jdbc:jtds:sqlserver://Prasanna-PC/SqlPractice","sa","Prasanna@123");
+
+Connection con=DriverManager.getConnection(
+	"jdbc:oracle:thin:@localhost:1521:xe","scott","tiger");
+
+The JDBC URL contains the following components : 
+
+1) Protocol Name : Indicates the name of the protocol that is used to access a database.
+2) Sub-protocol Name : Indicates the mechanism to retrieve data from a database. 
+3) Subname : Indicates the Data Source Name (DSN) that contains the database information.
+
+You need to specify the user name and password of the connecting databaes. 
+
+Connection con=DriverManager.getConnection("jdbc:odbc:java","sa","");
+
+3) Create and Execute JDBC Statements : 
+
+
+Statement : This is used to create one valid sql statement. 
+
+Statement st=con.createStatement();
+
+You can fire the select query by using the executeQuery() method and other insert,update and delete dml operations are performed by using executeUpdate() method. 
+
+To store the records retrived by the statement object, we need the help of ResultSet. 
+
+Statement st=con.CreateStatement();
+ResultSet rs=st.executeQuery("select * from emp");
+
+Types of ResultSets : 
+
+
+
+To connect to Mysql at first, we need to add maven dependency 
+
+<dependency>
+      <groupId>org.jdbi</groupId>
+      <artifactId>jdbi</artifactId>
+      <version>2.73</version>
+    </dependency>
+   <dependency>
+      <groupId>mysql</groupId>
+      <artifactId>mysql-connector-java</artifactId>
+      <version>8.0.18</version>
+    </dependency>
+
+
+This dependency needs to be added to pom file. 
+
+
+Class.forName() : this method used to load the corresponding driver to 
+the java program. 
+
+For loading MySql Driver to the program, 
+
+Class.forName("com.mysql.cj.jdbc.Driver");
+
+Connection : It is a pipeline through which we can connect to any backend. 
+
+      DBI dbi = new DBI("jdbc:mysql://localhost:3306/sqlpractice?useSSL=false",
+	 "root", "root");
+
+
+Jdbi works on annotation based. 
+
+To Retrieve data, please use annotation as
+
+@SqlQuery
+
+To send data like (Insert/Update/Delete) operations 
+
+
+@SqlUpdate 
+
+
+Each annotation needs to be referred with specific method
+of proper return type. 
+
+You can specify parameters/placeholder using :parm_name 
+
+
+mvn archetype:generate -DgroupId=com.hexaware.trainer -DartifactId=EmployCrud -DarchetypeArtifactId=maven-archetype-quickstart -DarchetypeVersion=1.4 -DinteractiveMode=false
+
+
+
+1) Step 1 : Create a maven Project (Done) 
+
+2) Step 2 : Add the relevant dependencies to POM.xml file 
+
+<dependency>
+      <groupId>org.jdbi</groupId>
+      <artifactId>jdbi</artifactId>
+      <version>2.73</version>
+    </dependency>
+   <dependency>
+      <groupId>mysql</groupId>
+      <artifactId>mysql-connector-java</artifactId>
+      <version>8.0.18</version>
+      <version>5.1.5</version>
+    </dependency>
+
+3) Step 3 : Create a folder in com.hexaware as (model)
+then it is com.hexaware.model 
+
+Then in that create a class as Employ.java, and 
+write properties, variables, constructors, 
+toString() etc...
+
+4) Step 4 : Create a folder in com.hexaware as (persistance)
+
+and Create file as DbConnection.java
+
+write relevant connection string. 
+
+Please edit databasename and user/password w.r.t. ur system
+credentials
+
+5) Step 5 : Create a Mapper class as EmployMapper
+
+write the relevant code, as the constructor order and 
+
+map order both will be same. 
+
+
+6) Step 6 : Create a class as EmployDAO in persistence folder, 
+and write relevant database operations w.r.t. Return type
+and alias method name. 
+
+
+7) Step 7 : Create a Factory folder in com.hexaware and 
+in that write the code for dao() database connet, and 
+call the DAO methods (factory methods must be static 
+w.r.t. Coding standards) 
+
+
+8) Step 8 : Create a class as ShowEmployMain in 
+com.hexaware.trainer and in this you please
+call the Factory methods. 
+
+Factory methods contains the business logic, that
+we need to call and print the results.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
