@@ -292,6 +292,25 @@ Factory methods contains the business logic, that
 we need to call and print the results.
 
 
+http://github.com/prasanna-hexaware/dec2019
+
+in that hexawareApril
+
+Day2 folder 
+
+Find tables in 
+
+http://github.com/prasanna-hexaware/dec2019
+
+and open EmployTable_hexaware.sql file
+
+and please perform crud operations on
+
+AgenTableExam.sql
+
+this is the task to be finished by evening 
+
+Thank You
 
 
 
