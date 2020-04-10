@@ -1,0 +1,76 @@
+Pending Leave means 
+
+Assume 1000 is manager for 2000 and 3000 employees 
+
+then once he enter as 1000 then he needs to see pending leaves of
+
+2000 and 3000
+
+based on that he needs to take care of action. 
+
+Validations for ApplyLeave
+__________________________
+
+   1) LeaveBalance need to be there 
+
+   2) LeaveStartDate must be less than or equal to LeaveEnddate
+
+   3) LeaveStarDate not yesterdays' date (means no prev dates)
+ 
+   4) No overloapping of day to be entertained 
+
+	Assume, you applied from
+
+	April 10 2020 to April 18 2020
+
+	Then again you try to apply leave on April 15 then it is 
+
+	called overlapping because already one leave records exists
+	on this period. 
+
+   5) Top level manager leave needs to be approved automatically as leaveStatus for him is APPROVED always (Auto Approval)
+
+   	Assume, Employee 1000 is CEO for his no pending leaves.
+	Remaining employees by default PENDING.
+
+
+	Once leaveApplied please deduct the leaveBalance. 
+
+
+Validations for ApproveDeny 
+
+	He is authorized manager to the employee to approve or not
+	Example 1000 is manager for 2000 and 3000, then employee 2000 leave not to be 
+	approved by 1001 even he is manager (because he is unauthorized for this employ) 
+
+
+/**
+    * return count for already applied leave history.
+    * @param empId the id of the employee.
+    * @param leaStDate of the start date.
+    * @param leaEndDate of the end date.
+    * @return total records.
+    */
+  @SqlQuery("SELECT COUNT(*) FROM LEAVE_DETAILS WHERE LEA_EMP_ID = :empId"
+        +
+        " AND LEA_LEAVE_STATUS = 'PENDING' AND "
+        +
+        " (LEA_START_DATE <= :leaStDate AND LEA_END_DATE >= :leaStDate OR "
+        +
+        "LEA_START_DATE <= :leaEndDate AND LEA_END_DATE >= :leaEndDate)")
+    int count(@Bind("empId") int empId,
+                      @Bind("leaStDate") String leaStDate,
+                      @Bind("leaEndDate") String leaEndDate);
+
+
+
+
+SELECT COUNT(*) FROM LEAVE_DETAILS WHERE EMP_ID=1000 AND LEAVE_STATUS='PENDING'
+AND (LEAV_STARTDATE <='2020-04-15' AND LEAVE_ENDDATE >= '2020-04-15' OR
+     LEAVE_STARTDATE <='2020-04-16' AND LEAVE_ENDDATE >= '2020-04-16) 
+
+  
+But assume, you already applied previous from April 10 2020 to April 20 2020 
+
+then the above query returns count as 1 because already 1 record found in DB. 
+
