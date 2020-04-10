@@ -1,0 +1,126 @@
+JMOCK ()
+
+I java, we have business logic methods which are interacting
+with database, those methods we cannot do testing by using 
+Junit, because for everytime execution it his the database,
+and lot of junk records will be inserted into the tables, 
+and sometimes it leads to overlapping. So, its highly tediuos
+to test the methods by using Junit, then we need the hel of
+JMOCK. 
+
+JMOCK is the best solution to test the methods which are 
+interacting with database. here, instead of testing with 
+database records, we provide mock data in the front end,
+with that we are performing the testing. This is known as
+JMOCK. 
+
+So, we have to redirect the control here as instead of hitting
+database, plese redirect and check in the mocked data specified. 
+
+Lets take scenario, as We are working with Employ table, 
+Assume in Mysql Db Employ table contains 100 records, 
+then if by using Junit you have to test, 
+
+assertEquals(100,db.count()); 
+
+Assume db.count() methods returns count(*) 
+
+But, the above code will have lot of issue, because if New record inserted, then the above condition will fail. So, this kind of problem you have to overcome, then we need the help 
+of JMOCK. 
+
+In JMOCK, assume we gave 3 records in the front-end, and we have to say instead of redirecting control to database, please redirect to mocked data specified. 
+
+assertEquals(3,db.count()).
+But, we have to specify db.count() needs to check results in mocked data but not in original database. 
+
+__________________________________________________________________
+
+To start with JMOCK, we need to add the below dependency to the existing project. 
+
+  <dependency>
+      <groupId>org.jmockit</groupId>
+      <artifactId>jmockit</artifactId>
+      <version>1.33</version>
+      <scope>test</scope>
+    </dependency>
+
+
+For jmock we need to import the below packages. 
+import mockit.MockUp;
+import org.junit.runner.RunWith;
+import mockit.Expectations;
+import mockit.Mock;
+import mockit.Mocked;
+import mockit.integration.junit4.JMockit;
+
+Your java test class needs to support Jmock, then you have to define like this as 
+
+/**
+ * Unit test for simple App.
+ */
+@RunWith(JMockit.class) 
+public class EmployTest 
+{
+}
+
+
+
+@Mocked: This annotation is used to provide a mock field/parameter for the class being tested. The type of the mock field or parameter can be any kind of reference type: an interface, a class (including abstract and final ones), an annotation, or an 
+
+example :
+
+ public final void testListById(@Mocked final EmployDAO dao) {
+...
+...
+...
+}
+
+1.	MockUp<>() API
+
+MockUp<>()
+1.	In MockUp the parameter values doesn’t matter, we provide (override with) a fake implementation of the method. And whenever the method is called, this mocking is used.
+2.	Once the MockUp is provided, it will be called as many times that particular method is called.
+3.	The order of MockUps (when multiple methods are mocked) is not important.
+
+
+
+  new MockUp<EmployFactory>() {
+      @Mock
+      EmployDAO dao() {
+        return dao;
+      }
+    };
+
+In the above code snippet i am giving EmployFactory class in MockUp because the methods of the class are hitting database, so i have to write the fake implemetations to that. 
+
+that is the purpose of MockUp<>
+
+Expectations()
+
+Provides the alterdate data for the database. So, here we have to specify when you call the method, instead of hitting the database, please look in my fake data specified. 
+Means used to redirect the control from original database values to the fake data specified in the class. 
+
+Example : 
+
+ final ArrayList<Employ> elist = new ArrayList<Employ>();
+      elist.add(new Employ(1, "Sougata", "Java", "Programmer", 844223));
+      elist.add(new Employ(3, "Ram", "Angular", "Expert",58553));
+
+ new Expectations() {
+      {
+        dao.show(); result = elist;
+      }
+    };
+
+Actually, dao.show() hits the database select command, and executes it. But, here we are telling alternate here as if you run dao.show() instead of hitting database, please see the result in elist. Then it redirects the control to ArrayList object elist. 
+
+  List<Employ> show(); method which used to retrieve all records from Employ table, now we have to mock it. 
+
+show() method belongs to EmployDAO, and it would be called by EmployFactory method showEmploy(),
+so we have to apply the mocking on this. 
+
+Tea Break for 15 mins
+
+22:48 09-04-2020
+
+
