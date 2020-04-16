@@ -1,0 +1,138 @@
+Method Overloading : 
+
+Using the same method w.r.t. Different parameters of
+different data types. 
+
+Here, the method name must be same. 
+
+
+Types of memories. 
+
+There are 2 types of memories as 
+
+	1) STACK
+
+	2) HEAP 
+
+values types will be stored in STACK memory, and reference types will be stored in HEAP memory.
+
+What are the methods of the Object class :
+__________________________________________
+
+
+the top level class in java is java.lang.Object, 
+
+it has some predefined methods. 
+
+toString() : This method will be called automatically, once you print the object, 
+Its recommended that any data you have to print in class, please write code in toString() as every object will reuse this method. 
+
+It represents the String representation.
+
+hashCode()
+getClass() 
+equals() 
+
+
+what is the differece between == and equals() 
+
+How the Strings will be stored in memory. 
+
+String w.r.t. data types, once you declare a string, at first, 
+it checks the value is available in HEAP memory or not, if the value
+is available then it would be pointing to the same memory location,
+if the value is not available then it would be pointing to the different
+memory location. Means, same value cannot be stored in different memory locations. 
+
+When you give new keyword, then even value same it stores in different memory location. 
+
+class Test
+{
+   int a,b;
+   a=5;
+   b=7;
+}
+
+
+The above code, will not compile, because a class contains only data members and member functions. 
+You cannot write the code directly in the class, you have to write code in methods of the class. 
+Above you wrote assignment statements in the class, that will not compile, 
+But, if you want to give default values to the class variables, then we need the help 
+Constructors. 
+
+A constructor is a special member, that which used to initialize the member variables of the class, it is special because it has the same name as that of class name. 
+
+Rules : 
+
+	1) It will not contains any return type.
+
+	2) It will not return any value.
+	
+	3) It will be invoked automatically once the instance of the class created.
+
+	4) A constructor can be overloaded. 
+
+Types of Constructors :
+_______________________
+
+
+There are 2 types of constructors known as
+
+	1) static constructor : These are called class constructors. Which are used to 
+initilize the static variables of the class. These constructors are invoked automatically before control reaches the entry point. These constructors cannot be overloaded. {in java we don't have static constructor, we have use static {} as static constructor}
+	
+	2) instatic constructor : These are the constructors that which are invoked automatically once the instance of the class created. These constructors can be overloaded. 
+
+static variables : 
+
+int x;
+
+static int x;
+
+what is the difference between 
+
+static variables are variables, that which retains values irrespective of type of object. Object not required to access these values, you can access them by using class name. 
+
+Inheritance : 
+
+Deriving a new entity from already existing entity known as inheritance,
+through inheritance we can reduce the size of the program. 
+
+class First {
+...
+...
+...
+}
+
+class Second extends First {
+...
+...
+...
+}
+
+Once you create an object to Second class, then you can access all public/protected and friendly
+members of the First class. 
+
+
+
+mvn archetype:generate -DgroupId=com.hexaware.trainer -DartifactId=InhDemo -DarchetypeArtifactId=maven-archetype-quickstart -DarchetypeVersion=1.4 -DinteractiveMode=false
+
+
+
+final classes never be inherited
+final methods cannot be overrided
+final variables cannot be changed 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
