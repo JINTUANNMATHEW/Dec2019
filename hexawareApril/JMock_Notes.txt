@@ -1,11 +1,11 @@
 JMOCK ()
 
-I java, we have business logic methods which are interacting
+In java, we have business logic methods which are interacting
 with database, those methods we cannot do testing by using 
 Junit, because for everytime execution it his the database,
 and lot of junk records will be inserted into the tables, 
 and sometimes it leads to overlapping. So, its highly tediuos
-to test the methods by using Junit, then we need the hel of
+to test the methods by using Junit, then we need the help of
 JMOCK. 
 
 JMOCK is the best solution to test the methods which are 
@@ -97,7 +97,7 @@ that is the purpose of MockUp<>
 
 Expectations()
 
-Provides the alterdate data for the database. So, here we have to specify when you call the method, instead of hitting the database, please look in my fake data specified. 
+Provides the alternative data for the database. So, here we have to specify when you call the method, instead of hitting the database, please look in my fake data specified. 
 Means used to redirect the control from original database values to the fake data specified in the class. 
 
 Example : 

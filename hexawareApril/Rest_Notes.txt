@@ -1,0 +1,119 @@
+WebServices : 
+
+Webservices contains no.of web methods that can be called across various programming languages, if you want to make any application as write once and run from any programming language, then ew need the help of webservice. 
+
+
+There are 2 types of web services known as
+
+	1) SOAP (Simple Object Access Protocol) 
+
+	It contains various standards as
+
+	(i) SOAP (Simple Object Access Protocol) 
+
+		It is a communication protocol, that which allows you
+	to communicate between webservice and client 
+
+	(ii) UDDI (Universal, Description Discovery and Integration) 
+
+		It is a registry, where we can register and deploy the webservices.
+
+	(iii) WSDL (Webservices Description Language)
+
+		It generates xml vocoblury for web methods which are there
+		in the service. 
+
+	
+But now a days no one using SOAP based services, because it contains 
+data in xml format only. So, i need a service that can deliver data in any format,
+like Plain Text, Html, XML or JSON etc... various formats, then we need the help of
+REST Services.
+
+
+./bin/startup.sh
+
+run the url http://localhost:8080
+
+or in git bash please run as
+
+curl -vvv http://localhost:8080
+
+After writing code, you have to make a package as 
+
+mvn clean package 
+
+then it creates a war file, this file you have to paste in apache tomcat webapps folder. 
+
+
+group id : g1
+artifactid : Your project name
+snapshot : 1
+package : com.hexaware.MLPnum
+
+
+To run the application, you have to specify path as
+
+http://localhost:8080 and give your application name followed by / 
+
+then it becomes 
+
+http://localhost:8080/RestHelloWorld   -> Step 2
+
+Then in your project, plesae open web.xml file and find the <servlet-mapping>
+
+ <servlet-mapping>
+        <servlet-name>Jersey Web Application</servlet-name>
+        <url-pattern>/webapi/*</url-pattern>
+    </servlet-mapping>
+
+
+In the servlet mapping, its specified as /webapi, so your url becomes 
+
+
+
+http://localhost:8080/RestHelloWorld/webapi -> Step 3
+
+
+then after that you have to give the class path 
+
+
+/**
+ * Root resource (exposed at "myresource" path)
+ */
+@Path("myresource")
+public class MyResource {
+
+    /**
+     * Method handling HTTP GET requests. The returned object will be sent
+     * to the client as "text/plain" media type.
+     *
+     * @return String that will be returned as a text/plain response.
+     */
+    @GET
+    @Produces(MediaType.TEXT_PLAIN)
+    public String getIt() {
+        return "Welcome to Rest Webservices...";
+    }
+}
+
+for that class, you have the path as myresource, so your url becomes
+
+http://localhost:8080/RestHelloWorld/hexaware/myresource  -> Step 4
+
+In that class, one method don't have any path, means it is the default method to be fired, 
+for a class we can define only one method without path as it fires default. 
+
+./bin/startup.sh
+
+
+http://localhost:8080/RestHelloWorld/hexaware/myresource/lms  -> Step 4
+http://localhost:8080/RestHelloWorld/hexaware/myresource/cms  -> Step 5
+
+http://localhost:8080/RestHelloWorld/hexaware/calc/sum/12/5
+http://localhost:8080/RestHelloWorld/hexaware/calc/sub/12/5
+http://localhost:8080/RestHelloWorld/hexaware/calc/mult/12/5
+
+
+
+break for 15 mins 
+
