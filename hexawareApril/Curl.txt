@@ -1,0 +1,12 @@
+curl -vvv -H "Accept:application/json" -X POST -H "Content-Type:application/json" -d '{"empno":"8994","name":"Kalpana","dept":"Java","desig":"Programmer","basic":"48234"}' "http://localhost:8080/RestEmpNew/webapi/Emp/employInsert"
+
+
+curl -vvv -H "Accept:application/json" -X POST -H "Content-Type:application/json" -d '{"empno":"-1","name":"Kalpana","dept":"Java","desig":"Programmer","basic":"48234"}' "http://localhost:8080/RestEmpNew/webapi/Emp/employInsert"
+
+curl -vvv -H "Accept:application/json" -X POST -H "Content-Type:application/json" -d '{"empno":"10","name":"Kiran Kumar Reddy Kailasam","dept":"Java","desig":"Programmer","basic":"48234"}' "http://localhost:8080/RestEmpNew/webapi/Emp/employInsert"
+
+
+curl -vvv -H "Accept:application/json" -X POST -H "Content-Type:application/json" -d '{"empno":"10","name":"Kiran","dept":"SAP","desig":"Programmer","basic":"48234"}' "http://localhost:8080/RestEmpNew/webapi/Emp/employInsert"
+
+curl -vvv -H "Accept:application/json" -X POST -H "Content-Type:application/json" -d '{"empno":"10","name":"Kiran","dept":"Dotnet","desig":"Programmer","basic":"-100"}' "http://localhost:8080/RestEmpNew/webapi/Emp/employInsert"
+
